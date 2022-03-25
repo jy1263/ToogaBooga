@@ -5,7 +5,8 @@
 /out/
 
 # Configuration.
-config.json
+config.test2.json
+config.test1.json
 config.production.json
 
 # Notes
