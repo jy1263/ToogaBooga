@@ -62,98 +62,6 @@ export namespace VerifyManager {
         "magic": "mp"
     };
 
-    export const GY_HIST_TO_DISPLAY: { [s: string]: string } = {
-        "Lost Halls completed": "Lost Halls",
-        "Voids completed": "Voids",
-        "Cultist Hideouts completed": "Cultist Hideouts",
-        "Nests completed2": "Nests",
-        "Shatters completed1": "Shatters",
-        "Tombs completed": "Tomb of the Ancients",
-        "Ocean Trenches completed": "Ocean Trenches",
-        "Parasite chambers completed4": "Parasite Chambers",
-        "Lairs of Shaitan completed4": "Lair of Shaitans",
-        "Puppet Master's Encores completed4": "Puppet Master's Encores",
-        "Cnidarian Reefs completed": "Cnidarian Reefs",
-        "Secluded Thickets completed": "Secluded Thickets",
-        "Cursed Libraries completed": "Cursed Libraries",
-        "Fungal Caverns completed": "Fungal Caverns",
-        "Crystal Caverns completed": "Crystal Caverns",
-        "Lairs of Draconis (hard mode) completed2": "Lair of Draconis (Hard)",
-        "Lairs of Draconis (easy mode) completed1": "Lair of Draconis (Easy)",
-        "Mountain Temples completed2": "Mountain Temples",
-        "Crawling Depths completed1": "Crawling Depths",
-        "Woodland Labyrinths completed1": "Woodland Labyrinths",
-        "Deadwater Docks completed1": "Deadwater Docks",
-        "Ice Caves completed1": "Ice Cave",
-        "Bella Donnas completed3": "Belladonna's Gardens",
-        "Davy Jones's Lockers completed1": "Davy Jones' Lockers",
-        "Battle for the Nexuses completed1": "Battle of the Nexus",
-        "Candyland Hunting Grounds completed": "Candyland Hunting Grounds",
-        "Puppet Master's Theatres completed1": "Puppet Master's Theatres",
-        "Toxic Sewers completed1": "Toxic Sewers",
-        "Haunted Cemeteries completed1": "Haunted Cemetaries",
-        "Mad Labs completed1": "Mad Labs",
-        "Abysses of Demons completed": "Abyss of Demons",
-        "Manors of the Immortals completed": "Manor of the Immortals",
-        "Ancient Ruins completed": "Ancient Ruins",
-        "Undead Lairs completed": "Undead Lairs",
-        "Sprite Worlds completed": "Sprite Worlds",
-        "Snake Pits completed": "Snake Pits",
-        "Caves of a Thousand Treasures completed1": "Cave of a Thousand Treasures",
-        "Magic Woods completed": "Magic Woods",
-        "Hives completed1": "Hives",
-        "Spider Dens completed": "Spider Dens",
-        "Forbidden Jungles completed": "Forbidden Jungles",
-        "Forest Mazes completed1": "Forest Mazes",
-        "Pirate Caves completed": "Pirate Caves"
-    };
-
-    export const DISPLAY_TO_GY_HIST: { [s: string]: string } = {
-        "Lost Halls": "Lost Halls completed",
-        "Voids": "Voids completed",
-        "Cultist Hideouts": "Cultist Hideouts completed",
-        "Nests": "Nests completed2",
-        "Shatters": "Shatters completed1",
-        "Tomb of the Ancients": "Tombs completed",
-        "Ocean Trenches": "Ocean Trenches completed",
-        "Parasite Chambers": "Parasite chambers completed4",
-        "Lair of Shaitans": "Lairs of Shaitan completed4",
-        "Puppet Master's Encores": "Puppet Master's Encores completed4",
-        "Cnidarian Reefs": "Cnidarian Reefs completed",
-        "Secluded Thickets": "Secluded Thickets completed",
-        "Cursed Libraries": "Cursed Libraries completed",
-        "Fungal Caverns": "Fungal Caverns completed",
-        "Crystal Caverns": "Crystal Caverns completed",
-        "Lair of Draconis (Hard)": "Lairs of Draconis (hard mode) completed2",
-        "Lair of Draconis (Easy)": "Lairs of Draconis (easy mode) completed1",
-        "Mountain Temples": "Mountain Temples completed2",
-        "Crawling Depths": "Crawling Depths completed1",
-        "Woodland Labyrinths": "Woodland Labyrinths completed1",
-        "Deadwater Docks": "Deadwater Docks completed1",
-        "Ice Cave": "Ice Caves completed1",
-        "Belladonna's Gardens": "Bella Donnas completed3",
-        "Davy Jones' Lockers": "Davy Jones's Lockers completed1",
-        "Battle of the Nexus": "Battle for the Nexuses completed1",
-        "Candyland Hunting Grounds": "Candyland Hunting Grounds completed",
-        "Puppet Master's Theatres": "Puppet Master's Theatres completed1",
-        "Toxic Sewers": "Toxic Sewers completed1",
-        "Haunted Cemetaries": "Haunted Cemeteries completed1",
-        "Mad Labs": "Mad Labs completed1",
-        "Abyss of Demons": "Abysses of Demons completed",
-        "Manor of the Immortals": "Manors of the Immortals completed",
-        "Ancient Ruins": "Ancient Ruins completed",
-        "Undead Lairs": "Undead Lairs completed",
-        "Sprite Worlds": "Sprite Worlds completed",
-        "Snake Pits": "Snake Pits completed",
-        "Cave of a Thousand Treasures": "Caves of a Thousand Treasures completed1",
-        "Magic Woods": "Magic Woods completed",
-        "Hives": "Hives completed1",
-        "Spider Dens": "Spider Dens completed",
-        "Forbidden Jungles": "Forbidden Jungles completed",
-        "Forest Mazes": "Forest Mazes completed1",
-        "Pirate Caves": "Pirate Caves completed"
-    };
-
     const CHECK_PROFILE_ID: string = "check_profile";
     const NO_MANUAL_VERIFY_ID: string = "deny";
     const MANUAL_VERIFY_ID: string = "manual_verify";
@@ -1701,26 +1609,11 @@ export namespace VerifyManager {
         }
 
         if (verifProps.verifReq.graveyardSummary.checkThis) {
-            if (verifProps.verifReq.graveyardSummary.useBotCompletions) {
-                for (const entry of verifProps.verifReq.graveyardSummary.botCompletions) {
-                    if (entry.value === 0) continue;
-                    const dgnInfo = DungeonUtilities.getDungeonInfo(entry.key, guildDoc);
-                    if (!dgnInfo) continue;
-                    sb.append(`- ${entry.value} ${dgnInfo.dungeonName} Completion Logged.`).appendLine();
-                }
-            }
-            else {
-                let added = false;
-                for (const entry of verifProps.verifReq.graveyardSummary.realmEyeCompletions) {
-                    if (entry.value === 0) continue;
-                    // Put here so this shows up first on list
-                    if (!added) {
-                        sb.append("- Graveyard History is Public.").appendLine();
-                        added = true;
-                    }
-                    const display = GY_HIST_TO_DISPLAY[entry.key];
-                    sb.append(`- ${entry.value} ${display} Completions.`).appendLine();
-                }
+            for (const entry of verifProps.verifReq.graveyardSummary.botCompletions) {
+                if (entry.value === 0) continue;
+                const dgnInfo = DungeonUtilities.getDungeonInfo(entry.key, guildDoc);
+                if (!dgnInfo) continue;
+                sb.append(`- ${entry.value} ${dgnInfo.dungeonName} Completion Logged.`).appendLine();
             }
         }
 
@@ -1907,88 +1800,45 @@ export namespace VerifyManager {
         if (verifReq.graveyardSummary.checkThis) {
             const issues: string[] = [];
             const logIssues: string[] = [];
-            if (verifReq.graveyardSummary.useBotCompletions) {
-                const completionsNeeded = new Collection<string, number>(
-                    verifReq.graveyardSummary.botCompletions.map(x => [x.key, x.value])
-                );
-                const userDoc = await MongoManager.getUserDoc(resp.name);
-                const loggedInfo = userDoc.length === 0
-                    ? new Collection<string, number>()
-                    : LoggerManager.getCompletedDungeons(userDoc[0], member.guild.id);
+            const completionsNeeded = new Collection<string, number>(
+                verifReq.graveyardSummary.botCompletions.map(x => [x.key, x.value])
+            );
+            const userDoc = await MongoManager.getUserDoc(resp.name);
+            const loggedInfo = userDoc.length === 0
+                ? new Collection<string, number>()
+                : LoggerManager.getCompletedDungeons(userDoc[0], member.guild.id);
 
-                let allPassed = true;
-                for (const [dgnId, amt] of loggedInfo) {
-                    const dgnInfo = DungeonUtilities.getDungeonInfo(dgnId, guildDoc);
-                    if (!dgnInfo)
+            let allPassed = true;
+            for (const [dgnId, amt] of loggedInfo) {
+                const dgnInfo = DungeonUtilities.getDungeonInfo(dgnId, guildDoc);
+                if (!dgnInfo)
+                    continue;
+
+                if (completionsNeeded.has(dgnId)) {
+                    const newAmt = completionsNeeded.get(dgnId)! - amt;
+                    if (newAmt <= 0) {
+                        completionsNeeded.delete(dgnId);
                         continue;
-
-                    if (completionsNeeded.has(dgnId)) {
-                        const newAmt = completionsNeeded.get(dgnId)! - amt;
-                        if (newAmt <= 0) {
-                            completionsNeeded.delete(dgnId);
-                            continue;
-                        }
-
-                        allPassed = false;
-                        issues.push(
-                            `- ${newAmt}/${completionsNeeded.get(dgnId)!} ${dgnInfo.dungeonName} Completions Logged.`
-                        );
-                        logIssues.push(
-                            `- ${newAmt}/${completionsNeeded.get(dgnId)!} ${dgnInfo.dungeonName} Completions Logged.`
-                        );
                     }
-                }
 
-                if (!allPassed) {
-                    const normalDisplay = StringUtil.codifyString(issues.join("\n"));
-                    const logDisplay = StringUtil.codifyString(logIssues.join("\n"));
-                    result.manualIssues.push({
-                        key: "Dungeon Completion Requirement Not Fulfilled",
-                        value: `You still need to satisfy the following dungeon requirements: ${normalDisplay}`,
-                        log: `User has not fulfilled the following dungeon requirements: ${logDisplay}`
-                    });
+                    allPassed = false;
+                    issues.push(
+                        `- ${newAmt}/${completionsNeeded.get(dgnId)!} ${dgnInfo.dungeonName} Completions Logged.`
+                    );
+                    logIssues.push(
+                        `- ${newAmt}/${completionsNeeded.get(dgnId)!} ${dgnInfo.dungeonName} Completions Logged.`
+                    );
                 }
             }
-            else {
-                if (!gyHist) {
-                    result.taIssues.push({
-                        key: "Graveyard History Private",
-                        value: "I am not able to access your graveyard summary. Make sure your graveyard is set so"
-                            + " anyone can see it and then try again.",
-                        log: "User's graveyard information is private."
-                    });
-                }
-                else {
-                    for (const gyStat of verifReq.graveyardSummary.realmEyeCompletions) {
-                        if (!(gyStat.key in DISPLAY_TO_GY_HIST)) continue;
-                        const gyHistKey = DISPLAY_TO_GY_HIST[gyStat.key];
-                        const data = gyHist.properties.find(x => x.achievement === gyHistKey);
-                        // Doesn't qualify because dungeon doesn't exist.
-                        if (!data) {
-                            issues.push(`- You do not have any ${gyStat.key} completions.`);
-                            logIssues.push(`- No ${gyStat.key} completions.`);
-                            continue;
-                        }
 
-                        // Doesn't qualify because not enough
-                        if (gyStat.value > data.total) {
-                            issues.push(
-                                `- You have ${data.total} / ${gyStat.key} total ${gyStat.key} completions needed.`
-                            );
-                            logIssues.push(`- ${data.total} / ${gyStat.key} total ${gyStat.key} completions.`);
-                        }
-                    }
-
-                    if (issues.length > 0) {
-                        const normalDisplay = StringUtil.codifyString(issues.join("\n"));
-                        const logDisplay = StringUtil.codifyString(logIssues.join("\n"));
-                        result.manualIssues.push({
-                            key: "Dungeon Completion Requirement Not Fulfilled",
-                            value: `You still need to satisfy the following dungeon requirements: ${normalDisplay}`,
-                            log: `User has not fulfilled the following dungeon requirements: ${logDisplay}`
-                        });
-                    }
-                }
+            if (!allPassed) {
+                const normalDisplay = StringUtil.codifyString(issues.join("\n"));
+                const logDisplay = StringUtil.codifyString(logIssues.join("\n"));
+                result.manualIssues.push({
+                    key: "Dungeon Completion Requirement Not Fulfilled",
+                    value: `You still need to satisfy the following dungeon requirements: ${normalDisplay}`,
+                    log: `User has not fulfilled the following dungeon requirements: ${logDisplay}`
+                });
             }
         }
 
