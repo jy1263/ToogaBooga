@@ -302,7 +302,10 @@ export namespace VerifyManager {
             section.channels.verification.manualVerificationChannelId
         );
 
-        await i.deferUpdate();
+        if (section.isMainSection) {
+            await i.deferUpdate();
+        }
+
         verify(member, guildDoc, section, {
             manualVerify: manualVerifyChannel,
             verifyStart: verifyStartChannel,
