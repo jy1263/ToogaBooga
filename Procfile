@@ -1,1 +1,1 @@
-worker: npm run start
+worker: npm run compile && node out/index.js
