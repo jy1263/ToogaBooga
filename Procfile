@@ -1,1 +1,1 @@
-worker: npm run start
+worker: node ./load-env-to-file.js && npm run start
